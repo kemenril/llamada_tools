@@ -1,0 +1,22 @@
+{
+  "type": "function",
+  "function":
+{
+  "name": "write_file",
+  "description": "Creates a new file and writes the provided content into it. This tool will fail if the file exists.  No newline is appended automatically; the data is written as-given, to the disk.  You are encouraged to add a newline to any output which does not end with one, if doing so will not change the meaning of the written data.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "description": "The destination file to create and write."
+      },
+      "content": {
+        "type": "string",
+        "description": "The data to write into the file."
+      }
+    },
+    "required": ["path", "content"]
+  }
+}
+}

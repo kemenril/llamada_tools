@@ -1,0 +1,19 @@
+{
+  "type": "function",
+  "function":
+{
+  "name": "list_files",
+  "description": "Lists all files and subdirectories inside a target directory. Returns a JSON array of strings, where directory names end with a trailing slash (/).",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "description": "The relative or absolute path of the directory view (e.g., '.', './src', or '/var/log').  Absolute paths are probably safer."
+      }
+    },
+    "required": ["path"]
+  }
+}
+}
+

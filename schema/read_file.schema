@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function":
+{
+  "name": "read_file",
+  "description": "Reads and returns the complete text contents of a specified local file.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "description": "The path to the file to read (e.g., 'config.json' or '/src/main.rs')."
+      }
+    },
+    "required": ["path"]
+  }
+}
+}

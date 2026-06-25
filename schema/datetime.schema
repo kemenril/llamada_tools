@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+  "name": "datetime",
+  "description": "Retrieves the current local date, time, timezone, and calendar metadata from the host machine. For anchoring timelines, checking elapsed time, or resolving relative phrases like 'yesterday' or 'next week'.",
+  "parameters": {
+    "type": "object",
+    "properties": {}
+  }
+}
+}

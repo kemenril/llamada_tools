@@ -1,0 +1,11 @@
+[package]
+name = "llamada_tools_common"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# List the exact dependencies your shared utility code needs:
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+

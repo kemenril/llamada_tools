@@ -1,0 +1,57 @@
+[workspace]
+members = [
+	"llamada_tools_common",
+]
+
+[package]
+name = "llamada_tools"
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
+wasi = "0.11"
+# For JSON handling
+serde = { version = "1.0", features = ["derive"] }
+chrono = { version = "0.4", features = ["serde"] }
+serde_json = "1.0"
+anyhow = "1.0"
+
+[dependencies]
+wasi = { workspace = true } 
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+
+llamada_tools_common = { path = "./llamada_tools_common" }
+
+[[bin]]
+name = "echo"
+path = "src/echo.rs"
+
+[[bin]]
+name = "list_files"
+path = "src/list_files.rs"
+
+[[bin]]
+name = "read_file"
+path = "src/read_file.rs"
+
+[[bin]]
+name = "write_file"
+path = "src/write_file.rs"
+
+[[bin]]
+name = "delete_file"
+path = "src/delete_file.rs"
+
+[[bin]]
+name = "mkdir"
+path = "src/mkdir.rs"
+
+[[bin]]
+name = "datetime"
+path = "src/datetime.rs"
+
+
+
