@@ -3,7 +3,7 @@ use serde::Serialize;
 use serde::de::DeserializeOwned;
 use anyhow::Result;
 
-//For reading
+//For reading file data
 #[derive(Deserialize, Debug)]
 pub struct FileReq {
     pub path: String,
@@ -15,6 +15,14 @@ pub struct FileSub {
     pub path: String,
     pub content: String,
 }
+
+//Things we may want to pass *in* to get time data
+#[derive(Deserialize,Debug)]
+pub struct DateTimeReq {
+    #[serde(default)]
+    pub zone: String,
+}
+
 
 #[derive(Serialize, Debug)]
 pub struct DateTime {

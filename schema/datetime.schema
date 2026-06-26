@@ -2,10 +2,16 @@
   "type": "function",
   "function": {
   "name": "datetime",
-  "description": "Retrieves the current local date, time, timezone, and calendar metadata from the host machine. For anchoring timelines, checking elapsed time, or resolving relative phrases like 'yesterday' or 'next week'.",
-  "parameters": {
+  "description": "Retrieves the current date and time, For anchoring timelines, checking elapsed time, or resolving relative phrases like 'yesterday' or 'next week.'  Output is in a structure with pre-built output string and indivisual pieces of information like 'hour' and 'minute,' and zone information included.  Please use the human readable string to report date and time unless instructed otherwist.  Also please report the received time-zone with the information unless instructed otherwise.",
+  "parameters" : {
     "type": "object",
-    "properties": {}
+    "properties": {
+      "zone": {
+        "type": "string",
+        "description": "The time-zone for which to produce date/time information.  This system is in US/Central, and you should always use this zone to generate new timestamps, but when comparing against times already generated, make sure the zones of the new times match those of the old ones."
+        }
+      },
+      "required": ["zone"]
+    }
   }
-}
 }
