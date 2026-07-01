@@ -10,15 +10,28 @@ edition = "2024"
 
 [workspace.dependencies]
 wasi = "0.11"
+
+#HTTP is kind of a mess
+http_req_wasi = { version = "0.11" }
+reqwest = { version = "0.11", default-features = false, features = ["rustls-tls"] }
+tokio = { version = "=1.36.0", features = ["rt", "macros", "net", "time"] }
+
 # For JSON handling
 serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Time
 chrono = { version = "0.4", features = ["serde"] }
 chrono-tz = { version = "0.10" }
-serde_json = "1.0"
+#Error handling
+
 anyhow = "1.0"
 
 [dependencies]
-wasi = { workspace = true } 
+wasi = { workspace = true }
+http_req_wasi = { workspace = true }
+reqwest = { workspace = true }
+tokio = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 anyhow = { workspace = true }
@@ -26,6 +39,12 @@ chrono = { workspace = true }
 chrono-tz = { workspace = true }
 
 llamada_tools_common = { path = "./llamada_tools_common" }
+
+[patch.crates-io]
+tokio = { git = "https://github.com/second-state/wasi_tokio.git", branch = "v1.36.x" }
+socket2 = { git = "https://github.com/second-state/socket2.git", branch = "v0.5.x" }
+hyper = { git = "https://github.com/second-state/wasi_hyper.git", branch = "v0.14.x" }
+reqwest = { git = "https://github.com/second-state/wasi_reqwest.git", branch = "0.11.x" }
 
 [[bin]]
 name = "echo"
@@ -54,6 +73,10 @@ path = "src/mkdir.rs"
 [[bin]]
 name = "datetime"
 path = "src/datetime.rs"
+
+[[bin]]
+name = "http_request"
+path = "src/http_request.rs"
 
 
 

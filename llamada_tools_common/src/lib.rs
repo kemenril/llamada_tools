@@ -1,6 +1,7 @@
 use serde::Deserialize;
 use serde::Serialize;
 use serde::de::DeserializeOwned;
+use std::collections::HashMap;
 use anyhow::Result;
 
 //For reading file data
@@ -40,6 +41,48 @@ pub struct DateTime {
     pub second: u32,
     pub weekday: String,
     pub ordinal_day_of_year: u32,
+}
+
+
+//For the http_request tool
+#[derive(Deserialize,Debug)]
+pub struct HttpRequest {
+    // ... as it says.
+    pub url: String,
+    // One of GET, POST, PUT, DELETE... Are there any others?
+    pub method: String,
+    // A set of extra headers to send with the request.
+    #[serde(default)]
+    pub headers: HashMap<String,String>,
+    // The body of the request.
+    #[serde(default)]
+    pub body: String,
+    // One of "immediate" or "file"; maybe we could optionally include "quiet"
+    // or some such thing to allow only the status information to be taken and
+    // the actual output ignored and dumped.
+    #[serde(default)]
+    pub output_mode: String,
+    //If output goes to a file, where is that file?
+    #[serde(default)]
+    pub output_file: String,
+}
+
+#[derive(Serialize,Debug)]
+pub struct HttpResponse {
+    //Only the numeric code; 404, 200, or the like...
+    pub http_status_code: u16,
+    //The textual status that goes along with the numeric code above.
+    pub http_status_message: String,
+    //If we have a message for the LLM or the user, we can put it in here.
+    pub local_tool_status_message: String,
+    //The headers received with the response 
+    pub headers: HashMap<String,String>,
+    //Body of the response, which should only be populated in immediate mode,
+    //or if the file for some reason can't be written and we fall back to 
+    //immediate mode.
+    pub body: String,
+    // If we've been asked to write a file, and we have succeeded, where is it?
+    pub file: String,
 }
 
 
