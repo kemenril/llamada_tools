@@ -1,0 +1,42 @@
+{
+  "type": "function",
+    "function": {
+      "name": "http_request",
+      "description": "Make an arbitrary HTTP request and return the response. The response body is returned inline, in the 'body' parameter or the output, by default.  It can be written to a file if 'output_mode' is set to 'file'.  The response also includes key/value pairs of headers, http status codes and the textual status message, among other things.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The full URL to send the request to, including scheme (e.g. https://example.com/api/endpoint)."
+      },
+          "method": {
+            "type": "string",
+            "enum": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
+            "description": "The HTTP method to use."
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {"type": "string"},
+            "description": "Optional HTTP headers to include with the request, as key-value pairs."
+          },
+          "body": {
+            "type": "string",
+            "description": "Optional request body. Typically used with POST, PUT, and PATCH."
+          },
+          "output_mode": {
+            "type": "string",
+            "enum": ["immediate", "file"],
+            "description": "How to return the response body. 'immediate' returns it inline in the  'body' field of the response (default). 'file' writes it to the path in the sandbox specified in 'output_file', which is useful for large responses or binary content."
+          },
+          "output_file": {
+            "type": "string",
+            "description": "Path to write the response body to. Only used when output_mode is 'file' and otherwise ignored."
+          }
+        },
+        "required": ["url", "method"]
+      }
+    }
+}
+
+
